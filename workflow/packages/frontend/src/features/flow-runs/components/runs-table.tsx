@@ -9,7 +9,7 @@ import { FlowRetryStrategy, FlowRun, FlowRunStatus, isFailedState, Permission } 
 import { useNewWindow } from '@/components/embed-provider';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { BulkAction, CURSOR_QUERY_PARAM, DataTable, LIMIT_QUERY_PARAM, RowDataWithActions } from '@/components/ui/data-table';
+import { BulkAction, CURSOR_QUERY_PARAM, DataTable, LIMIT_QUERY_PARAM, PAGE_QUERY_PARAM, RowDataWithActions } from '@/components/ui/data-table';
 import { DataTableColumnHeader } from '@/components/ui/data-table/data-table-column-header';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { StatusIconWithText } from '@/components/ui/status-icon-with-text';
@@ -45,15 +45,17 @@ export const RunsTable = () => {
       const flowId = searchParams.getAll('flowId');
       const cursor = searchParams.get(CURSOR_QUERY_PARAM);
       const limit = searchParams.get(LIMIT_QUERY_PARAM) ? parseInt(searchParams.get(LIMIT_QUERY_PARAM)!) : 10;
+      const page = searchParams.get(LIMIT_QUERY_PARAM) ? parseInt(searchParams.get(PAGE_QUERY_PARAM)!) : 1;
       const createdAfter = searchParams.get('createdAfter');
       const createdBefore = searchParams.get('createdBefore');
 
-      return flowRunsApi.list({
+      return flowRunsApi.v2.list({
         status: status ?? undefined,
         projectId,
         flowId,
         cursor: cursor ?? undefined,
         limit,
+        page,
         createdAfter: createdAfter ?? undefined,
         createdBefore: createdBefore ?? undefined,
       });

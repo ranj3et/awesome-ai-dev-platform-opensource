@@ -18,6 +18,7 @@ import {
     CURSOR_QUERY_PARAM,
     DataTable,
     LIMIT_QUERY_PARAM,
+    PAGE_QUERY_PARAM,
     RowDataWithActions,
 } from '@/components/ui/data-table';
 import { DataTableColumnHeader } from '@/components/ui/data-table/data-table-column-header';
@@ -59,10 +60,14 @@ export default function IssuesTable({ setActiveTab }: IssuesTableProps) {
       const limit = searchParams.get(LIMIT_QUERY_PARAM)
         ? parseInt(searchParams.get(LIMIT_QUERY_PARAM)!)
         : 10;
-      return issuesApi.list({
+      const page = searchParams.get(PAGE_QUERY_PARAM)
+        ? parseInt(searchParams.get(PAGE_QUERY_PARAM)!)
+        : 1;
+      return issuesApi.v2.list({
         projectId,
         cursor: cursor ?? undefined,
-        limit,
+        limit, 
+        page,
       });
     },
   });

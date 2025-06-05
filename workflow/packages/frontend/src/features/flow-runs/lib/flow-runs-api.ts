@@ -72,6 +72,11 @@ export const flowRunsApi = {
       socket.on('error', handleError);
     });
   },
+  v2: {
+    list(request: ListFlowRunsRequestQuery): Promise<SeekPage<FlowRun>> {
+      return api.get<SeekPage<FlowRun>>('/v2/flow-runs', request);
+    },
+  }
 };
 function getInitialRun(
   socket: Socket,

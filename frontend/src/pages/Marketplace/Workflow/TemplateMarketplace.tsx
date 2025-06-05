@@ -89,7 +89,7 @@ export default function TemplateMarketplace() {
     <div className={styles.container}>
       <div className={styles.breadcrumb}>
         <h4 className={styles.title}>
-          <strong>Marketplace</strong> ({list.length} template{list.length > 1 ? "s" : ""})
+          <strong>Marketplace</strong> ({total} template{total > 1 ? "s" : ""})
         </h4>
         <div className={styles.actions}>
           {searchNameInput}

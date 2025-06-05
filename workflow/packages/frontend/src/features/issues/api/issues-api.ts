@@ -21,4 +21,9 @@ export const issuesApi = {
   count() {
     return api.get<number>('/v1/issues/count');
   },
+  v2: {
+    list(request: ListIssuesParams): Promise<SeekPage<PopulatedIssue>> {
+      return api.get<SeekPage<PopulatedIssue>>('/v2/issues', request);
+    },
+  }
 };
