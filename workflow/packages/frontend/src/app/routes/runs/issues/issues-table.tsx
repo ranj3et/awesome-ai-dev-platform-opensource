@@ -55,7 +55,6 @@ export default function IssuesTable({ setActiveTab }: IssuesTableProps) {
     staleTime: 0,
     gcTime: 0,
     queryFn: () => {
-      const cursor = searchParams.get(CURSOR_QUERY_PARAM);
       const limit = searchParams.get(LIMIT_QUERY_PARAM)
         ? parseInt(searchParams.get(LIMIT_QUERY_PARAM)!)
         : 10;

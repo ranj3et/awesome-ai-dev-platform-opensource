@@ -133,14 +133,14 @@ export default function Dashboard({backend, onClose}: {
             TensorboardX
           </div>
         )}*/}
-        {workspaceUrl && (
-          <div className={"c-ml-dashboard__tab " + (activeTab === "dashboard" ? "active" : "")} onClick={() => setActiveTab("dashboard")}>
-            Workspace
-          </div>
-        )}
         {systemUrl && (
           <div className={"c-ml-dashboard__tab " + (activeTab === "system" ? "active" : "")} onClick={() => setActiveTab("system")}>
             Dashboard
+          </div>
+        )}
+        {workspaceUrl && (
+          <div className={"c-ml-dashboard__tab " + (activeTab === "dashboard" ? "active" : "")} onClick={() => setActiveTab("dashboard")}>
+            Workspace
           </div>
         )}
         {/* {logsUrl && (
