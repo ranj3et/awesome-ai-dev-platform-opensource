@@ -160,20 +160,6 @@ export const httpSendRequestAction = createAction({
       use_proxy,
     } = context.propsValue;
 
-    assertNotNullOrUndefined(method, 'Method');
-assertNotNullOrUndefined(url, 'URL');
-
-//  SSRF Patch
-  throw new Error('Invalid URL');
-}
-
-const request: HttpRequest = {
-  method,
-  url,
-  headers: headers as HttpHeaders,
-  queryParams: queryParams as QueryParams,
-  timeout: timeout ? timeout * 1000 : 0,
-};
 assertNotNullOrUndefined(method, 'Method');
 assertNotNullOrUndefined(url, 'URL');
 
