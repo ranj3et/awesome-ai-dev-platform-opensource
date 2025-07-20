@@ -161,15 +161,34 @@ export const httpSendRequestAction = createAction({
     } = context.propsValue;
 
     assertNotNullOrUndefined(method, 'Method');
-    assertNotNullOrUndefined(url, 'URL');
+assertNotNullOrUndefined(url, 'URL');
 
-    const request: HttpRequest = {
-      method,
-      url,
-      headers: headers as HttpHeaders,
-      queryParams: queryParams as QueryParams,
-      timeout: timeout ? timeout * 1000 : 0,
-    };
+//  SSRF Patch
+  throw new Error('Invalid URL');
+}
+
+const request: HttpRequest = {
+  method,
+  url,
+  headers: headers as HttpHeaders,
+  queryParams: queryParams as QueryParams,
+  timeout: timeout ? timeout * 1000 : 0,
+};
+assertNotNullOrUndefined(method, 'Method');
+assertNotNullOrUndefined(url, 'URL');
+
+// SSRF Patch
+if (url.includes('169.254.169.254')) {
+  throw new Error('Invalid URL');
+}
+
+const request: HttpRequest = {
+  method,
+  url,
+  headers: headers as HttpHeaders,
+  queryParams: queryParams as QueryParams,
+  timeout: timeout ? timeout * 1000 : 0,
+};
     if (body) {
       const bodyInput = body['data'];
       if (body_type === 'form_data') {
